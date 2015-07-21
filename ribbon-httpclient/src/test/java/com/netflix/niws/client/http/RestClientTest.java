@@ -18,17 +18,6 @@
 package com.netflix.niws.client.http;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
-import java.net.URI;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
-import org.junit.Test;
-
 import com.netflix.client.ClientFactory;
 import com.netflix.client.config.CommonClientConfigKey;
 import com.netflix.client.http.HttpRequest;
@@ -36,6 +25,16 @@ import com.netflix.client.http.HttpResponse;
 import com.netflix.config.ConfigurationManager;
 import com.netflix.loadbalancer.BaseLoadBalancer;
 import com.netflix.loadbalancer.Server;
+import org.junit.Test;
+
+import java.net.URI;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 
 public class RestClientTest {
@@ -72,7 +71,7 @@ public class RestClientTest {
             result.add(response.getRequestedURI());
         }
         assertEquals(expected, result);
-        request = HttpRequest.newBuilder().uri(new URI("http://www.linkedin.com/")).build();
+        request = HttpRequest.newBuilder().uri(new URI("http://www.amazon.com")).build();
         HttpResponse response = client.executeWithLoadBalancer(request);
         assertEquals(200, response.getStatus());
     }

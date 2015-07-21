@@ -17,19 +17,19 @@
  */
 package com.netflix.loadbalancer;
 
-import static org.junit.Assert.*;
+import com.google.common.collect.Lists;
+import com.netflix.client.config.CommonClientConfigKey;
+import com.netflix.client.config.DefaultClientConfigImpl;
+import com.netflix.client.config.IClientConfig;
+import org.junit.Test;
 
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.junit.Test;
-
-import com.google.common.collect.Lists;
-import com.netflix.client.config.CommonClientConfigKey;
-import com.netflix.client.config.DefaultClientConfigImpl;
-import com.netflix.client.config.IClientConfig;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class DynamicServerListLoadBalancerTest {
     public static class MyServerList extends AbstractServerList<Server> {
@@ -65,7 +65,7 @@ public class DynamicServerListLoadBalancerTest {
 
     @Test
     public void testDynamicServerListLoadBalancer() throws Exception {
-        final int refreshIntervalMillis = 50;
+        final int refreshIntervalMillis = 400;
         final DefaultClientConfigImpl config = DefaultClientConfigImpl.getClientConfigWithDefaultValues();
         config.setProperty(CommonClientConfigKey.NIWSServerListClassName, MyServerList.class.getName());
         config.setProperty(CommonClientConfigKey.NFLoadBalancerClassName, DynamicServerListLoadBalancer.class.getName());
